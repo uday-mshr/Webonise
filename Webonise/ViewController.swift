@@ -59,7 +59,7 @@ class ViewController: UIViewController {
     }
     
     func getData(){
-        let url = "http://api.openweathermap.org/data/2.5/find?lat=25.581354&lon=85.099880&cnt=10&appid=9147adfd1427d9972c0ceabd1d39efbd&units=metric"
+        let url = "http://api.openweathermap.org/data/2.5/find?lat=12.9733694&lon=77.595087&cnt=10&appid=9147adfd1427d9972c0ceabd1d39efbd&units=metric"
         
         
         //Alamofire.request(url, method: .post, parameters: parameters,encoding: JSONEncoding.default, headers: nil).responseJSON {
@@ -98,16 +98,16 @@ extension ViewController : UICollectionViewDelegate,UICollectionViewDataSource, 
         if indexPath.item == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: bannerCellId, for: indexPath) as! BannerCell
             cell.cityLabel.text = list?.name
-            cell.tempLabel.text = "\((list?.main.temp!)!) ° c"
-            cell.minTempLabel.text = " Min \((list?.main.tempMin!)!) ° c"
-            cell.maxTempLabel.text = "Max \((list?.main.tempMax!)!) ° c"
-            cell.humidityLabel.text = "H \((list?.main.humidity!)!) %"
-            cell.pressureLabel.text = "P \((list?.main.pressure!)!) pa"
+            cell.tempLabel.text = "\((list?.main.temp)!) ° c"
+            cell.minTempLabel.text = " Min \((list?.main.tempMin)!) ° c"
+            cell.maxTempLabel.text = "Max \((list?.main.tempMax)!) ° c"
+            cell.humidityLabel.text = "H \((list?.main.humidity)!) %"
+            cell.pressureLabel.text = "P \((list?.main.pressure)!) pa"
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: listCellId, for: indexPath) as! ListCell
             cell.titleLabel.text = list?.name
-            cell.valueLabel.text = "\((list?.main.temp!)!) ° c"
+            cell.valueLabel.text = "\((list?.main.temp)!) ° c"
             return cell
         }
     }

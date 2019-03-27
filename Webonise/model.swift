@@ -9,22 +9,24 @@
 import Foundation
 
 struct ResponseModel: Decodable {
-    let message, cod: String
-    let count: Int
+    let message: String
     let list: [List]
+    let count: Int
+    let cod: String
 }
 
 struct List: Decodable {
     let id: Int
     let name: String
-    let coord: Coord
-    let main: MainClass
-    let dt: Int
     let wind: Wind
+    let snow: JSONNull?
+    let coord: Coord
+    let rain: JSONNull?
     let sys: Sys
-    let rain, snow: JSONNull?
-    let clouds: Clouds
     let weather: [Weather]
+    let clouds: Clouds
+    let dt: Int
+    let main: MainClass
 }
 
 struct Clouds: Decodable {
@@ -36,13 +38,15 @@ struct Coord: Decodable {
 }
 
 struct MainClass: Decodable {
-    let temp: Double?
-    let pressure, humidity, tempMin, tempMax: Int?
+    let tempMin, humidity: Int
+    let temp: Double
+    let tempMax, pressure: Int
     
     enum CodingKeys: String, CodingKey {
-        case temp, pressure, humidity
         case tempMin = "temp_min"
+        case humidity, temp
         case tempMax = "temp_max"
+        case pressure
     }
 }
 
@@ -51,26 +55,27 @@ struct Sys: Decodable {
 }
 
 struct Weather: Decodable {
-    let id: Int
     let main: MainEnum
+    let id: Int
     let description: Description
     let icon: Icon
 }
 
 enum Description: String, Decodable {
-    case haze = "haze"
+    case skyIsClear = "Sky is Clear"
 }
 
 enum Icon: String, Decodable {
-    case the50N = "50n"
+    case the01N = "01n"
 }
 
 enum MainEnum: String, Decodable {
-    case haze = "Haze"
+    case clear = "Clear"
 }
 
 struct Wind: Decodable {
-    let speed, deg: Double
+    let speed: Double
+    let deg: Int?
 }
 
 // MARK: Encode/decode helpers
