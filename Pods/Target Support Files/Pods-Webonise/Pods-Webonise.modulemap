@@ -1,0 +1,6 @@
+framework module Pods_Webonise {
+  umbrella header "Pods-Webonise-umbrella.h"
+
+  export *
+  module * { export * }
+}
